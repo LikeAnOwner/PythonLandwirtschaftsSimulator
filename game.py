@@ -1,33 +1,37 @@
 from rich import print
-from aufgaben import *
-from helper import *
-import feld
+from commands import getCommands
+import json
 
-startFeld = feld.feld()
+with open('default_data.json', 'r') as json_file:
+    default_data = json.load(json_file)
 
-def gameLoop():
-    eingabe = input('> ')
-    while eingabe not in commands:
-        print(f'\nDer Befehl \'{eingabe}\' existiert nicht. Bitte verwende \'hilfe\', um eine Auflistung aller aktuell zur Verfügung stehenden Befehle zu erhalten.\n')
+with open('game_data.json', 'w') as json_file:
+        json.dump(default_data, json_file)
+
+with open('game_data.json', 'r') as json_file:
+    game_data = json.load(json_file)
+
+def main():
+    print('Bitte gebe deinen Namen ein.')
+    game_data['name'] = input('> ')
+
+    if game_data['name'] == 'Pant':
+        print('[chartreuse4]      _\______[/chartreuse4]')
+        print('[chartreuse4]      /        \========[/chartreuse4]')
+        print('[chartreuse4] ____|__________\_____[/chartreuse4]')
+        print('[chartreuse4]/ ___________________ \\ [/chartreuse4]')
+        print('[chartreuse4]\/ _===============_ \/[/chartreuse4]')
+        print('[chartreuse4]  "-===============-"[/chartreuse4]')
+
+    print('\n[chartreuse4]Herzlich Willkommen ' + game_data['name'] + ' zum Python Farming Simulator![/chartreuse4]', ':tractor:')
+    print('\nDu hast den alten Hof deines Großvaters geerbt. Leider sehen die Bilanzen gar nicht gut aus...')
+    print('\nVerwende den Befehl \'hilfe\', um eine Auflistung aller aktuell zur Verfügung stehenden Befehle zu erhalten.\n')
+
+    with open('game_data.json', 'w') as json_file:
+        json.dump(game_data, json_file)
+
+    while True:
         eingabe = input('> ')
-    
-    if eingabe == 'hilfe':
-        showHilfe()
-    elif eingabe == 'aufgaben':
-        showAufgaben()
-    elif eingabe == 'lockern':
-        startFeld.lockern
-    elif eingabe == 'pflanzen':
-        startFeld.pflanzen
-    elif eingabe == 'gießen':
-        startFeld.gießen
-    elif eingabe == 'ernten':
-        startFeld.ernten
-    
-    gameLoop()
+        getCommands(eingabe)
 
-print('\n[chartreuse4]Herzlich Willkommen zum Python Farming Simulator![/chartreuse4]', ':tractor:\n')
-print('Du hast den alten Hof deines Großvaters geerbt. Leider sehen die Bilanzen gar nicht gut aus...\nUm die Rentabilität wieder herzustellen, müssen einige Aufgaben erledigt werden.')
-print('\nVerwende den Befehl \'hilfe\', um eine Auflistung aller aktuell zur Verfügung stehenden Befehle zu erhalten.\n')
-
-gameLoop()
+main()
