@@ -1,9 +1,8 @@
-from ast import arg
 from rich.console import Console
 from rich.table import Table
 import json
 
-def getCommands(command):
+def sendCommand(command):
     args = command.split()
 
     if args[0] == 'hilfe':
