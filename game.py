@@ -1,14 +1,20 @@
+from platform import system
 from rich import print
 from commands import *
 from helper import *
+import os
 
+def clear():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 if not isGameNew():
+    clear()
     loadGame = input('Es wurde ein Spielstand gefunden. Soll der gespeicherte Spielstand geladen werden? (j/n)' + '\n> ')
 
     while loadGame != 'j' or loadGame != 'n':
         if loadGame == 'j':
             game_data = loadGameData()
+            clear()
             print('\nWillkommen zurück ' + game_data['name'] + ', du kennst dich ja sicherlich noch auf deinem Hof aus.')
             print('Anderenfalls kannst du \'hilfe\' in die Konsole eingeben, um eine Liste aller verfügbaren Befehle zu erhalten.')
             break
