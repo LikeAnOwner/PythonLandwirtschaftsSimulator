@@ -2,14 +2,10 @@ from platform import system
 from rich import print
 from commands import *
 from helper import *
-import os
-
-def clear():
-    os.system('cls' if os.name=='nt' else 'clear')
 
 if not isGameNew():
     clear()
-    loadGame = input('Es wurde ein Spielstand gefunden. Soll der gespeicherte Spielstand geladen werden? (j/n)' + '\n> ')
+    loadGame = input('\nEs wurde ein Spielstand gefunden. Soll der gespeicherte Spielstand geladen werden? (j/n)' + '\n\n> ')
 
     while loadGame != 'j' or loadGame != 'n':
         if loadGame == 'j':
@@ -22,19 +18,22 @@ if not isGameNew():
             resetGameData()
             break
         else:
+            clear()
             print('\n[red]Bitte gib eine gültige Antwort ein![/red]')
-            loadGame = input('Es wurde ein Spielstand gefunden. Möchtest du den Spielstand laden? (j/n)' + '\n> ')
+            loadGame = input('Es wurde ein Spielstand gefunden. Möchtest du den Spielstand laden? (j/n)' + '\n\n> ')
 
 if isGameNew():
+    clear()
     print('\n[chartreuse4]Herzlich willkommen zum Python Farming Simulator von Ole und Jakob![/chartreuse4]')
     print('\nDu hast den alten Hof deines Großvaters geerbt, doch sehen die Bilanzen leider gar nicht gut aus.')
     print('Um den Hof nun wieder auf Vordermann zu bringen, müssen einige Aufgaben erledigt werden.\n')
     print('Bevor du richtig loslegen kannst, musst du nur noch die Erburkunde unterschrieben.')
     print('Bitte trag deinen Namen in die Konsole ein und bestätige mit der Eingabetaste.')
 
-    name = input('> ')
+    name = input('\n> ')
 
     if name == 'Pant':
+        clear()
         print('\n[chartreuse4]      _\______[/chartreuse4]')
         print('[chartreuse4]      /        \========[/chartreuse4]')
         print('[chartreuse4] ____|__________\_____[/chartreuse4]')
@@ -46,6 +45,7 @@ if isGameNew():
         print('\n\n[red1]GAME OVER[/red1]\n')
         exit()
     
+    clear()
     print('\nNachdem du nun das Rechtliche abgeschlossen hast, kannst du mit der Abarbeitung der Aufgaben loslegen.')
     print('Um eine Auflistung aller Befehle zu erhalten, trage \'hilfe\' in die Konsole ein.')
 
@@ -55,7 +55,9 @@ if isGameNew():
 
 def main():
     while True:
-        eingabe = input('> ')
+        eingabe = input('\n> ')
+        clear()
+        print('\n> ' + eingabe)
         sendCommand(eingabe)
 
 main()

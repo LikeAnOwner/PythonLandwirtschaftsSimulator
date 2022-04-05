@@ -1,4 +1,5 @@
 import json
+import os
 
 def isGameNew():
     with open('game_data.json', 'r') as json_file:
@@ -28,3 +29,6 @@ def loadGameData():
 def saveGameData(game_data):
     with open('game_data.json', 'w') as json_file:
         json.dump(game_data, json_file)
+
+def clear():
+    os.system('cls' if os.name=='nt' else 'clear')
