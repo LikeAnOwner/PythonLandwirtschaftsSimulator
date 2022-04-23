@@ -161,7 +161,7 @@ def ernten(game_data, feldId):
     print('[chartreuse4]Ein neues Feld wurde zu deinen Feldern hinzugefügt.[/chartreuse4]')
     new_feld = {
         'id': len(game_data['fields']) + 1,
-        'type': random.choice(['potato', 'wheat', 'corn', 'carrot', 'tomato', 'weed', 'asparagus', 'pumpkin']),
+        'type': random.choice(['potato', 'wheat', 'cucumber', 'corn', 'carrot', 'tomato', 'weed', 'asparagus', 'pumpkin']),
         'status': 'harvested'
     }
     game_data['fields'].append(new_feld)
