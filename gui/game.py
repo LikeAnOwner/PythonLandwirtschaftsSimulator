@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import os
 
 def startWindow():
     layout = [
@@ -34,7 +35,7 @@ def gameName():
     window = sg.Window('Python Landwirtschafts Simulator', layout, size=(720, 480))
     return window
 
-def newGame():
+def newGame():    
     layout = [
         [sg.Text('Python Landwirtschafts Simulator', size=(69, 1), justification='center', font=("Helvetica", 16), relief=sg.RELIEF_RIDGE, k='-TEXT HEADING-', enable_events=True)],
         [sg.Text('Nachdem du nun das Rechtliche abgeschlossen hast, kannst du mit der Abarbeitung der Aufgaben loslegen.')],
@@ -42,8 +43,28 @@ def newGame():
         [sg.InputText(key='username')],
         [sg.Submit('Bestätigen', key='NameBestätigen')],
     ]
+    
     window = sg.Window('Python Landwirtschafts Simulator', layout, size=(720, 480))
     return window
+
+def pantGame():
+    layout = [
+        [sg.Text('Python Landwirtschafts Simulator', size=(69, 1), justification='center', font=("Helvetica", 16), relief=sg.RELIEF_RIDGE, k='-TEXT HEADING-', enable_events=True)],
+        [sg.Text('       _\______')],
+        [sg.Text('      /        \========')],
+        [sg.Text(' ____|__________\_____')],
+        [sg.Text('/ ___________________ \\')],
+        [sg.Text('\/ _===============_ \/')],
+        [sg.Text('  "-===============-"')],
+        [sg.Text('Anstatt die Urkunde zu unterschreiben sind Sie mit einem Panzer vom Typen Leopard 2 über den alten Hof Ihres Großvaters gefahren.')],
+        [sg.Text('Dabei haben Sie den gesamten Hof zunichtegemacht.')],
+        [sg.Text('GAME OVER')],
+        exit()
+    ]
+
+    window = sg.Window('Python Landwirtschafts Simulator', layout, size=(720, 480))
+    return window
+
 
 def startGame():
     window = startWindow()
@@ -58,7 +79,9 @@ def startGame():
         elif event in (None, 'StartBeenden'):
             break
         elif event == 'NameBestätigen':
-            if values['username'] == '':
+            if values['username'] == 'Pant':
+                window = pantGame()
+            elif values['username'] == '':
                 sg.popup('Bitte trage einen Namen ein!')
             else:
                 window = newGame()
